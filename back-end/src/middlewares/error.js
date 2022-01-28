@@ -1,4 +1,4 @@
-module.exports = (err, _req, res, _next) => {
+module.exports = (err, _req, res) => {
   console.log(err);
 
   if (err.isJoi) return res.status(422).json(err.message);

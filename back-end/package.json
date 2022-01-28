@@ -24,5 +24,8 @@
   },
   "keywords": [],
   "author": "Wellington Gregorio",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.7.0"
+  }
 }
