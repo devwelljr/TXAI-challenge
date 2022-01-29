@@ -1,4 +1,5 @@
 const loginSchema = require('../schemas/user/login');
+const registerSchema = require('../schemas/user/register');
 
 /* Valida Body da requisição de login */
 const validateLogin = (req, res, next) => {
@@ -18,7 +19,7 @@ const validateLogin = (req, res, next) => {
 /* Valida Body da requisição de register */
 const validateRegister = (req, res, next) => {
   const { body } = req;
-  const { error } = loginSchema.validate(body);
+  const { error } = registerSchema.validate(body);
 
   if (error) {
     console.log(error);

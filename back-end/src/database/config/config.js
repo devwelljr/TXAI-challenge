@@ -1,10 +1,11 @@
 require('dotenv').config();
 
 const options = {
-  username: process.env.MYSQL_USER || root,
+  username: process.env.MYSQL_USER || 'root',
   password: process.env.MYSQL_PASSWORD || 'password',
-  database: process.env.MYSQL_DB_NAME || estoque-TXAI,
-  host: process.env.MYSQL_HOST || 'mysql',
+  logging: true,
+  database: process.env.MYSQL_DB_NAME || 'estoque-TXAI',
+  host: process.env.MYSQL_HOST || 'localhost',
   port: process.env.MYSQL_PORT || '3306',
   dialect: "mysql"
 }

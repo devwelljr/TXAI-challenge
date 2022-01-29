@@ -1,5 +1,6 @@
 const { loginService, registerService } = require('../services/userService');
 
+/* Controller responsável pelo login */
 const login = async (req, res, next) => {
   try {
     const { user, password } = req.body;
@@ -15,6 +16,7 @@ const login = async (req, res, next) => {
   }
 };
 
+/* Controller responsável pelo registro */
 const register = async (req, res, next) => {
   try {
     const { user, password, email } = req.body;
