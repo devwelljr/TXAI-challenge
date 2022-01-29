@@ -8,6 +8,8 @@ const router = express.Router();
 
 router.post('/createProduct', validateCreate, create);
 
+router.delete('/myProduct', jwtValidation);
+
 router.get("/myProducts", jwtValidation, myProducts);
 
 module.exports = router;
