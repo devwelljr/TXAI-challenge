@@ -2,8 +2,10 @@
 
 ## Sobre o projeto
 
-Desafio Técnico para processo seletivo, este projeto consiste na implementação de um um sistema simples de controle de estoque com um login, CRUD de
+Desafio Técnico para processo seletivo, este projeto consiste na implementação de um um sistema de controle de estoque com um login, CRUD de
 produtos e CRUD de usuários.
+
+Onde feito o login e gerado um token para a autenticação do usuário, pois apenas o próprio usuário pode ver, criar, atualizar e deletar seus produtos em estoque.
 
 ## Tecnologias Utilizadas
 
@@ -35,5 +37,7 @@ Este projeto Utiliza o banco de dados MySQL, para o funcionamento é necessário
 -Clone o repositório através da seguinte chave https: `https://github.com/devwelljr/TXAI-challenge.git`
 
 -Instale as dependências do backend e frontend, entrando na raiz `./backend` dando `npm install` e o mesmo processo no frontend.
+
+-Dentro da raiz do backend `./backend` rode no terminal `npm run db:reset` ou os seguintes comandos: `npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all`, assim o sequelize irá criar o banco de dados no MySQL e popular o banco com alguns usuários. PS: O usuário `sistematxai` pedido será populado com o comando `npx sequelize-cli db:seed:all`.
 
 ## Como utilizar
