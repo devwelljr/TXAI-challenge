@@ -1,6 +1,8 @@
 const express = require("express");
-const { login, register } = require('../controllers/userController');
+const jwtValidation = require("../middlewares/jwtValidation");
+const { login, register, deleteUser } = require('../controllers/userController');
 const { validateLogin, validateRegister } = require('../middlewares/userValidation');
+
 
 /* rota iniciada */
 const router = express.Router();
@@ -10,5 +12,8 @@ router.post("/login", validateLogin, login);
 
 /* create */
 router.post("/register", validateRegister, register);
+
+/* delete */
+router.delete("/delete", jwtValidation, deleteUser);
 
 module.exports = router;
