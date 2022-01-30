@@ -29,6 +29,27 @@ const listMyProducts = async (token) => {
   return products;
 };
 
+/* Atualiza o produto */
+const updateMyProduct = async (id, body, token) => {
+  const secret = process.env.JWT_SECRET || "shhh";
+
+  const { email } = jwt.verify(token, secret);
+
+  const user = await User.findOne({ where: { email } });
+
+  const product = await Product.findOne({ where: { id } });
+
+  if (user.id === product.userId) {
+    const { name, price, quantity } = body;
+
+    await Product.update({ name, price, quantity }, { where: { id } });
+
+    return await Product.findOne({ where: { id } });
+  }
+
+  return errors.UNAUTHORIZED;
+};
+
 /* Deleta o produto passado por parametro */
 const deleteMyProduct = async (id, token) => {
   const secret = process.env.JWT_SECRET || "shhh";
@@ -47,4 +68,4 @@ const deleteMyProduct = async (id, token) => {
   return errors.UNAUTHORIZED;
 };
 
-module.exports = { listMyProducts, createMyProduct, deleteMyProduct };
+module.exports = { listMyProducts, createMyProduct, updateMyProduct, deleteMyProduct };

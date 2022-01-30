@@ -1,6 +1,7 @@
 const {
   listMyProducts,
   createMyProduct,
+  updateMyProduct,
   deleteMyProduct,
 } = require("../services/productService");
 
@@ -35,12 +36,15 @@ const myProducts = async (req, res, next) => {
   }
 };
 
-/* Controller para deletar um produto */
-const deleteProduct =  async (req, res, next) => {
+/* Controller responsável pela atualização de produto */
+const updateProduct =  async (req, res, next) => {
   try {
+    const { body } = req;
     const { id } = req.params;
+    const token = req.headers.authorization;
 
-    const product = await deleteMyProduct(id);
+    console.log(body);
+    const product = await updateMyProduct(id, body, token);
 
     if (!product || product.length === 0)
       return res.status(404).json({ message: "Nenhum produto encontrado." });
@@ -56,4 +60,26 @@ const deleteProduct =  async (req, res, next) => {
   }
 }
 
-module.exports = { create, myProducts, deleteProduct };
+/* Controller para deletar um produto */
+const deleteProduct =  async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const token = req.headers.authorization;
+
+    const product = await deleteMyProduct(id, token);
+
+    if (!product || product.length === 0)
+      return res.status(404).json({ message: "Nenhum produto encontrado." });
+    
+    if (product.message) {
+      return res.status(product.status).json({ message: product.message })
+    }
+
+    return res.status(200).json({ product });
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+}
+
+module.exports = { create, myProducts, deleteProduct, updateProduct };

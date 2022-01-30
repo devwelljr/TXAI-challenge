@@ -15,7 +15,7 @@ function NewProductForm() {
   /* A cada mudança nos inputs e feito a validação para liberação do butão */
   useEffect(() => {
     const { name, price, quantity } = newProduct;
-    const valid = name.length >= 4 && price >= 0.1 && quantity > 0;
+    const valid = name.length >= 2 && price >= 0.1 && quantity > 0;
 
     if (valid) {
       setDisable(false);

@@ -14,6 +14,7 @@ const endpoints = {
   products: {
     create: "http://localhost:3001/products/createProduct",
     myList: "http://localhost:3001/products/myProducts",
+    delete: "http://localhost:3001/products/myProduct",
   },
 };
 
@@ -38,11 +39,26 @@ function Provider({ children }) {
       axios.get(endpoints.products.myList, {
         headers: { Authorization: user.token },
       }),
+
+    deleteMyProduct: (id) => {
+      axios.delete(`${endpoints.products.delete}/${id}`, {
+        headers: { Authorization: user.token },
+      })
+
+    }
   };
 
   return (
     <Context.Provider
-      value={{ endpoints, user, setUser, userReqs, productsReqs, products, setProducts }}
+      value={{
+        endpoints,
+        user,
+        setUser,
+        userReqs,
+        productsReqs,
+        products,
+        setProducts,
+      }}
     >
       {children}
     </Context.Provider>

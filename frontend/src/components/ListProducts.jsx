@@ -20,6 +20,7 @@ function ListProducts() {
   useEffect(() => {
     setLoading(true);
     if (products.length) {
+      console.log(products);
       setLoading(false);
     }
   }, [products]);
