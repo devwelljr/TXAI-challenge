@@ -7,7 +7,23 @@ function ProductCard({ product }) {
   const { productsReqs, setProducts } = useContext(Context);
   const { name, price, quantity } = product;
 
-  const deleteSubmit = async () => {
+  const updateSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      await productsReqs.updateMyProduct(product);
+
+      const { data } = await productsReqs.getMyProducts();
+
+      setProducts(data.products);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const deleteSubmit = async (e) => {
+    e.preventDefault();
+
     try {
       const { id } = product;
 
@@ -21,12 +37,47 @@ function ProductCard({ product }) {
     }
   };
 
+  /* Atualiza o produto */
+  const handleChange = ({ target }) => {
+    const { name, value } = target;
+    product = { ...product, [name]: value };
+  };
+
   return (
     <div className='card'>
       <div className='card-body'>
-        <h1 className='card-title text-center'>{name}</h1>
-        <h2 className='card-text'>{`Preço: R$${price}`}</h2>
-        <h2 className='card-text'>{`Quantidade: ${quantity}`}</h2>
+        <div>
+          <input
+            type='text'
+            name='name'
+            placeholder='Novo nome'
+            onChange={handleChange}
+          />
+          <h1 className='card-title text-center'>{name}</h1>
+        </div>
+        <br />
+        <div>
+          <input
+            type='number'
+            name='price'
+            placeholder='Novo preço'
+            min={0}
+            onChange={handleChange}
+          />
+          <h2 className='card-text'>{`Preço: R$${price}`}</h2>
+        </div>
+        <br />
+        <div>
+          <input
+            type='number'
+            name='quantity'
+            placeholder='Nova quantidade'
+            min={0}
+            onChange={handleChange}
+          />
+          <h2 className='card-text'>{`Quantidade: ${quantity}`}</h2>
+        </div>
+        <br />
         <button onClick={(e) => deleteSubmit(e)}>
           <svg
             xmlns='http://www.w3.org/2000/svg'
@@ -43,7 +94,7 @@ function ProductCard({ product }) {
             />
           </svg>
         </button>
-        <button>
+        <button onClick={(e) => updateSubmit(e)}>
           <svg
             xmlns='http://www.w3.org/2000/svg'
             width='16'

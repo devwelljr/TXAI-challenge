@@ -18,8 +18,8 @@ const validateCreate = (req, res, next) => {
 
 /* Valida Body da requisição de update */
 const validateUpdate = (req, res, next) => {
-  const { body } = req;
-  const { error } = updateSchema.validate(body);
+  const { name, price, quantity } = req.body;
+  const { error } = updateSchema.validate({ name, price, quantity });
 
   if (error) {
     console.log(error);

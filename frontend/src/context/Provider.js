@@ -14,6 +14,7 @@ const endpoints = {
   products: {
     create: "http://localhost:3001/products/createProduct",
     myList: "http://localhost:3001/products/myProducts",
+    update: "http://localhost:3001/products/myProduct",
     delete: "http://localhost:3001/products/myProduct",
   },
 };
@@ -40,12 +41,24 @@ function Provider({ children }) {
         headers: { Authorization: user.token },
       }),
 
-    deleteMyProduct: (id) => {
-      axios.delete(`${endpoints.products.delete}/${id}`, {
+    updateMyProduct: async (newProduct) => {
+      await axios.put(`${endpoints.products.delete}/${newProduct.id}`, { ...newProduct },{
         headers: { Authorization: user.token },
       })
+      const { data } = await productsReqs.getMyProducts();
 
+      setProducts(data.products);
+    },
+
+    deleteMyProduct: async (id) => {
+      await axios.delete(`${endpoints.products.delete}/${id}`, {
+        headers: { Authorization: user.token },
+      })
+      const { data } = await productsReqs.getMyProducts();
+
+      setProducts(data.products);
     }
+
   };
 
   return (

@@ -42,7 +42,7 @@ const updateMyProduct = async (id, body, token) => {
   if (user.id === product.userId) {
     const { name, price, quantity } = body;
 
-    await Product.update({ name, price, quantity }, { where: { id } });
+    await Product.update({ name, price, quantity }, { where: { id: id } });
 
     return await Product.findOne({ where: { id } });
   }
