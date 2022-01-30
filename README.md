@@ -38,6 +38,8 @@ Este projeto Utiliza o banco de dados MySQL, para o funcionamento é necessário
 
 -Instale as dependências do backend e frontend, entrando na raiz `./backend` dando `npm install` e o mesmo processo no frontend.
 
+-Crie um arquivo de variáveis de ambiente na raiz do `./backend`, `.env` seguindo o arquivo `.env.example` como molde.
+
 -Dentro da raiz do backend `./backend` rode no terminal `npm run db:reset` ou os seguintes comandos: `npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all`, assim o sequelize irá criar o banco de dados no MySQL e popular o banco com alguns usuários. PS: O usuário `sistematxai` pedido será populado com o comando `npx sequelize-cli db:seed:all`.
 
 ## Como utilizar
