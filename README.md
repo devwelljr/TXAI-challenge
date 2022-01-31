@@ -63,3 +63,9 @@ PS: O `email` é unico no sistema, não sendo possível ter dois usuários com o
 
 
 ### Produtos: http://localhost:3000/customer/products
+
+Na tela de produtos são renderizados cards com os produtos daquele usuário logado, onde no canto esquerdo é possível adicionar um novo produto, onde deve-se colocar `nome` com no mínimo 2 carácteres, `preço` com preço mínimo de R$ 0.01 e `quantidade` que deve ser maior que 0.
+
+Nos cards há dois botões sendo o de lixeira para deletar o produto e o lápis para edição do produto, sendo que deve-se colocar nos inputs as alterações desejadas e logo após clicar no butão de lápis.
+
+![TelaDeCadastro](./frontend/src/images/productsPage.png)
