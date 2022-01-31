@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useContext } from "react";
 import Context from "../context/Context";
-import '../styles/userProducts.css';
+import "../styles/userProducts.css";
 
 function NewProductForm() {
   const [newProduct, setNewProduct] = useState({
@@ -47,7 +47,9 @@ function NewProductForm() {
 
   return (
     <div className='formProductsConteiner'>
-      <h2 className="display-6 font-weight-normal">Cadastre seus produtos aqui:</h2>
+      <h2 className='display-6 font-weight-normal'>
+        Cadastre seus produtos aqui:
+      </h2>
 
       <br />
 
@@ -92,14 +94,16 @@ function NewProductForm() {
 
         <br />
 
-        <button
-          type='submit'
-          className='btn btn-outline-light'
-          disabled={disable}
-          onClick={handleSubmit}
-        >
-          Novo Produto
-        </button>
+        <div className="row justify-content-center">
+          <button
+            type='submit'
+            className='btn btn-outline-light'
+            disabled={disable}
+            onClick={handleSubmit}
+          >
+            Novo Produto
+          </button>
+        </div>
       </form>
     </div>
   );

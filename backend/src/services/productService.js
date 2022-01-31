@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const jwt = require("jsonwebtoken");
 const { User, Product } = require("../database/models");
 const errors = require("../errors/errors");
@@ -44,7 +46,7 @@ const updateMyProduct = async (id, body, token) => {
 
     await Product.update({ name, price, quantity }, { where: { id: id } });
 
-    return await Product.findOne({ where: { id } });
+    return Product.findOne({ where: { id } });
   }
 
   return errors.UNAUTHORIZED;

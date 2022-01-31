@@ -48,6 +48,7 @@ function ProductCard({ product }) {
       <div className='card-body'>
         <div>
           <input
+            className="form-control"
             type='text'
             name='name'
             placeholder='Novo nome'
@@ -58,6 +59,7 @@ function ProductCard({ product }) {
         <br />
         <div>
           <input
+            className="form-control"
             type='number'
             name='price'
             placeholder='Novo preço'
@@ -69,6 +71,7 @@ function ProductCard({ product }) {
         <br />
         <div>
           <input
+            className="form-control"
             type='number'
             name='quantity'
             placeholder='Nova quantidade'

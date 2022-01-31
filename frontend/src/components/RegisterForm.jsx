@@ -37,13 +37,14 @@ function RegisterForm() {
 
     try {
       const { data } = await userReqs.registerSubmit(registerForm);
+      console.log(data);
 
       const { email, user, role } = data.newUser.user;
       const token = data.newUser.token;
 
       setUser({ email, user, role, token });
       setRegisterForm({ email: '', password: '', user: '' });
-      navigate('/customer/products');
+      navigate('/login');
     } catch (err) {
       const CONFLICT = 409;
       if (err.response.status === CONFLICT) setHiddenInvalidEmail(true);

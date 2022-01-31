@@ -43,7 +43,6 @@ const updateProduct =  async (req, res, next) => {
     const { id } = req.params;
     const token = req.headers.authorization;
 
-    console.log(id);
     const product = await updateMyProduct(id, body, token);
 
     if (!product || product.length === 0)

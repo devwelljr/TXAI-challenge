@@ -27,11 +27,13 @@ function ListProducts() {
 
   return (
     <div className='list'>
-      <h2 className='display-6 font-weight-normal'>Produtos</h2>
+      <h2 className='display-4 font-weight-normal'>Produtos</h2>
+
+      <hr />
 
       <div className='d-flex flex-wrap'>
         {loading ? (
-          <span>Nenhum produto</span>
+          <span  className='display-6 font-weight-normal'>Nenhum produto</span>
         ) : (
           products.map((product, index) => (
             <ProductCard key={index} product={product} />

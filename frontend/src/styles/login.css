@@ -14,16 +14,16 @@
     color: white;
     height: 100%;
     margin: 0;
-    max-width: 40%;
-    min-width: 40%;
+    max-width: 45%;
+    min-width: 35%;
 }
 
 .formLoginConteiner {
     align-items: center;
     display: flex;
     justify-content: center;
-    max-width: 70%;
-    min-width: 70%;
+    max-width: 55%;
+    min-width: 65%;
 }
 
 .formLogin {

@@ -38,15 +38,16 @@ function LoginForm() {
 
     try {
       const { data } = await userReqs.loginSubmit(loginForm);
+      console.log(data);
 
        if (data.token) {
-        const { email, user, role } = data.token.user;
-        const User = { email, user, role, token: data.token.token };
+        const { id, email, user, role } = data.token.user;
+        const User = { id, email, user, role, token: data.token.token };
         setUser(User);
 
         const paths = {
           customer: '/customer/products',
-          administrator: '/admin/manage',
+          administrator: '/customer/products',
         };
         navigate(paths[role]);
       } 

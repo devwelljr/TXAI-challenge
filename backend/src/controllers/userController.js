@@ -1,4 +1,9 @@
-const { loginService, registerService, deleteService } = require('../services/userService');
+const {
+  loginService,
+  registerService,
+  updateService,
+  deleteService,
+} = require("../services/userService");
 
 /* Controller responsável pelo login */
 const login = async (req, res, next) => {
@@ -7,12 +12,13 @@ const login = async (req, res, next) => {
 
     const token = await loginService({ user, password });
 
-    if (token.status) return res.status(token.status).json({ message: token.message });
+    if (token.status)
+      return res.status(token.status).json({ message: token.message });
 
     return res.status(200).json({ token });
   } catch (error) {
     console.log(error);
-    next(error)
+    next(error);
   }
 };
 
@@ -26,7 +32,30 @@ const register = async (req, res, next) => {
     return res.status(201).json({ newUser });
   } catch (error) {
     console.log(error);
-    next(error)
+    next(error);
+  }
+};
+
+/* COntroller responsável pr atualizar usuário */
+const updateUser = async (req, res, next) => {
+  try {
+    const { body } = req;
+    const { id } = req.params;
+    const token = req.headers.authorization;
+
+    const user = await updateService(id, body, token);
+
+    if (!user || user.length === 0)
+      return res.status(404).json({ message: "Nenhum usuário encontrado." });
+
+    if (user.message) {
+      return res.status(user.status).json({ message: user.message });
+    }
+
+    return res.status(200).json({ user });
+  } catch (error) {
+    console.log(error);
+    next(error);
   }
 };
 
@@ -34,8 +63,12 @@ const register = async (req, res, next) => {
 const deleteUser = async (req, res, next) => {
   try {
     const { id } = req.params;
-    
-    const deleteUser = await deleteService(id);
+    const token = req.headers.authorization;
+
+    const deleteUser = await deleteService(id, token);
+
+    if (deleteUser.status)
+      return res.status(deleteUser.status).json({ message: deleteUser.message });
 
     return res.status(200).json({ userDeleted: deleteUser });
   } catch (error) {
@@ -44,4 +77,4 @@ const deleteUser = async (req, res, next) => {
   }
 };
 
-module.exports = { login, register, deleteUser };
+module.exports = { login, register, updateUser, deleteUser };

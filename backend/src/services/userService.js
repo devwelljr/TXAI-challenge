@@ -30,6 +30,42 @@ const registerService = async ({ user, password, email }) => {
   const secret = process.env.JWT_SECRET || 'shhh';
 
   return { token: jwt.sign(payload, secret), user: createUser };
+};
+
+/* Service do update de usuário */
+const updateService = async (id, body, token) => {
+  const secret = process.env.JWT_SECRET || "shhh";
+
+  const { email } = jwt.verify(token, secret);
+
+  const user = await User.findOne({ where: { email } });
+
+  if (user.id == id) {
+    const { user, email } = body;
+
+    await User.update({ user, email }, { where: { id: id } });
+
+    return User.findOne({ where: { id } });
+  }
+
+  return errors.UNAUTHORIZED;
 }
 
-module.exports = { loginService, registerService };
+/* Service do delete de usuário */
+const deleteService = async (id, token) => {
+  const secret = process.env.JWT_SECRET || "shhh";
+
+  const { email } = jwt.verify(token, secret);
+
+  const { userId } = await User.findOne({ where: { email } });
+
+  if (userId == id) {
+    const deleted = await User.destroy({ where: { id: id } });
+
+    return deleted;
+  }
+  
+  return errors.UNAUTHORIZED;
+};
+
+module.exports = { loginService, registerService, updateService, deleteService };

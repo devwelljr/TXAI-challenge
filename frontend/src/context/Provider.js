@@ -8,7 +8,7 @@ const endpoints = {
   user: {
     register: "http://localhost:3001/users/register",
     login: "http://localhost:3001/users/login",
-    list: "http://localhost:3001/users/list",
+    update: "http://localhost:3001/users/update",
     delete: "http://localhost:3001/users/delete",
   },
   products: {
@@ -29,12 +29,25 @@ function Provider({ children }) {
 
     registerSubmit: (registerForm) =>
       axios.post(endpoints.user.register, registerForm),
+
+    updateSubmit: (updateForm) =>
+      axios.put(`${endpoints.user.update}/${user.id}`, updateForm, {
+        headers: { Authorization: user.token },
+      }),
+
+    deleteSubmit: () =>
+      axios.delete(`${endpoints.user.delete}/${user.id}`, {
+        headers: { Authorization: user.token },
+      }),
   };
 
   /* Objeto com todas as requisições de produtos */
   const productsReqs = {
     createSubmit: (newProduct) =>
-      axios.post(endpoints.products.create, { ...newProduct, email: user.email }),
+      axios.post(endpoints.products.create, {
+        ...newProduct,
+        email: user.email,
+      }),
 
     getMyProducts: () =>
       axios.get(endpoints.products.myList, {
@@ -42,9 +55,13 @@ function Provider({ children }) {
       }),
 
     updateMyProduct: async (newProduct) => {
-      await axios.put(`${endpoints.products.delete}/${newProduct.id}`, { ...newProduct },{
-        headers: { Authorization: user.token },
-      })
+      await axios.put(
+        `${endpoints.products.delete}/${newProduct.id}`,
+        { ...newProduct },
+        {
+          headers: { Authorization: user.token },
+        }
+      );
       const { data } = await productsReqs.getMyProducts();
 
       setProducts(data.products);
@@ -53,12 +70,11 @@ function Provider({ children }) {
     deleteMyProduct: async (id) => {
       await axios.delete(`${endpoints.products.delete}/${id}`, {
         headers: { Authorization: user.token },
-      })
+      });
       const { data } = await productsReqs.getMyProducts();
 
       setProducts(data.products);
-    }
-
+    },
   };
 
   return (
