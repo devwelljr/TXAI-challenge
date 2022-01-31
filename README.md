@@ -46,8 +46,6 @@ Este projeto Utiliza o banco de dados MySQL, para o funcionamento é necessário
 
 ## Como utilizar
 
-##Frontend
-
 ### Login: http://localhost:3000/login
 
 A aplicação começa com o cliente tendo que fazer login ou se cadastrar no `Estoque TXAI`, onde deve gitar seu `usuário` com no mínimo 4 carácteres e sua senha.
