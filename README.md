@@ -52,14 +52,14 @@ Este projeto Utiliza o banco de dados MySQL, para o funcionamento é necessário
 
 A aplicação começa com o cliente tendo que fazer login ou se cadastrar no `Estoque TXAI`, onde deve gitar seu `usuário` com no mínimo 4 carácteres e sua senha.
 
-![TelaDeLogin](.frontend/src/images/loginPage.png)
+![TelaDeLogin](./frontend/src/images/loginPage.png)
 
 ### Cadastro: http://localhost:3000/register
 
 Na tela de cadastro para se criar uma conta o usuário precisa cadastrar seu `usuário` com no mínimo 4 carácteres, sua `senha` com no mínimo 6 carácteres e um `email` válido.
 PS: O `email` é unico no sistema, não sendo possível ter dois usuários com o mesmo email.
 
-![TelaDeCadastro](.frontend/src/images/registerPage.png)
+![TelaDeCadastro](./frontend/src/images/registerPage.png)
 
 
 ### Produtos: http://localhost:3000/customer/products
