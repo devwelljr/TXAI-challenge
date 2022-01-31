@@ -17,6 +17,6 @@ router.post("/register", validateRegister, register);
 router.put("/update/:id", jwtValidation, updateUser);
 
 /* delete */
-router.delete("/delete/:id", deleteUser);
+router.delete("/delete/:id", jwtValidation, deleteUser);
 
 module.exports = router;

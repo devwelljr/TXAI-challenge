@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import Context from "../context/Context";
 import Header from "../components/Header";
 import { useNavigate } from "react-router-dom";
+import '../styles/perfil.css';
 
 function Login() {
   const { user, setUser, userReqs } = useContext(Context);
@@ -50,7 +51,7 @@ function Login() {
 
       <hr />
 
-      <main className='loginContainer'>
+      <main className='perfilContainer'>
         <div>
           <h1 className='display-5 font-weight-normal'>{`Usuário: ${user.user}`}</h1>
           <h2 className='display-6 font-weight-normal'>{`Email: ${user.email}`}</h2>
@@ -58,7 +59,7 @@ function Login() {
 
         <br />
 
-        <div>
+        <div className="">
           <h2>Edição de Perfil</h2>
           <input
             type='text'

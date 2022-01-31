@@ -66,4 +66,10 @@ Na tela de produtos são renderizados cards com os produtos daquele usuário log
 
 Nos cards há dois botões sendo o de lixeira para deletar o produto e o lápis para edição do produto, sendo que deve-se colocar nos inputs as alterações desejadas e logo após clicar no botão de lápis.
 
-![TelaDeCadastro](./frontend/src/images/productsPage.png)
+![TelaDeProdutos](./frontend/src/images/productsPage.png)
+
+### Produtos: http://localhost:3000/customer/perfil
+Nesta tela o usuário pode ver seu usuário e email cadastrado e podendo alterar seu `usuário` e `email` ou deletar seu perfil.
+
+![TelaDePerfil](./frontend/src/images/perfilPage.png)
+
